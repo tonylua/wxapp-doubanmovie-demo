@@ -1,0 +1,31 @@
+<!--movies.wxml-->
+<view class="movies" catchtap="onPageClick">
+    <view class="page-title" wx:if="{{movies.length}}">
+        共有{{movies.length}}部电影正在热映：
+    </view>
+    <scroll-view class="page-main"
+        scroll-y="true"
+        style="height:{{scrollHeight}}px"
+        bindscrolltoupper="onToUpper">
+        <block wx:for="{{movies}}" wx:for-item="item">
+            <view class="box">
+                <view class="pic"
+                    id="pic_{{item.id}}"
+                    catchtap="onGallaryClick">
+                    <image src="{{item.image}}"></image>
+                </view>
+                <view class="info">
+                    <view class="title">{{item['data-title']}}</view>
+                    <view class="others">
+                        <view class="line">评分：{{item['data-score']}}</view>
+                        <view class="line">演员：<text class="ellipsis">{{item['data-actors']}}</text></view>
+                        <view class="line">上映：{{item['data-release']}}</view>
+                    </view>
+                    <button type="primary" size="mini"
+                        id="btn_{{item.id}}"
+                        catchtap="onSummaryClick">查看简介</button>
+                </view>
+            </view>
+        </block>
+    </scroll-view>
+</view>

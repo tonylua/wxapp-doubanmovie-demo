@@ -1,0 +1,26 @@
+{
+  "pages":[
+    "pages/movies/movies",
+    "pages/movies_later/movies"
+  ],
+  "window":{
+    "backgroundTextStyle":"black",
+    "backgroundColor":"#fff",
+    "navigationBarBackgroundColor":"#000",
+    "navigationBarTitleText":"小程序demo-豆瓣电影",
+    "navigationBarTextStyle":"white",
+    "enablePullDownRefresh":"true"
+  },
+  "tabBar":{
+    "position": "bottom",
+    "selectedColor": "green",
+    "color": "#bbb",
+    "list": [{
+      "pagePath": "pages/movies/movies",
+      "text": "正在热映"
+    }, {
+      "pagePath": "pages/movies_later/movies",
+      "text": "即将上映"
+    }]
+  }
+}
