@@ -3,29 +3,36 @@
     <view class="page-title" wx:if="{{movies.length}}">
         共有{{movies.length}}部电影正在热映：
     </view>
-    <scroll-view class="page-main"
+    <scroll-view 
         scroll-y="true"
         style="height:{{scrollHeight}}px"
         bindscrolltoupper="onToUpper">
-        <block wx:for="{{movies}}" wx:for-item="item">
-            <view class="box">
-                <view class="pic"
-                    id="pic_{{item.id}}"
-                    catchtap="onGallaryClick">
-                    <image src="{{item.image}}"></image>
-                </view>
-                <view class="info">
-                    <view class="title">{{item['data-title']}}</view>
-                    <view class="others">
-                        <view class="line">评分：{{item['data-score']}}</view>
-                        <view class="line">演员：<text class="ellipsis">{{item['data-actors']}}</text></view>
-                        <view class="line">上映：{{item['data-release']}}</view>
+        <view class="page-main">
+            <block wx:for="{{movies}}" wx:for-item="item">
+                <view class="box">
+                    <view class="pic"
+                        id="pic_{{item.id}}"
+                        catchtap="onGallaryClick">
+                        <image src="{{item.image}}"></image>
                     </view>
-                    <button type="primary" size="mini"
-                        id="btn_{{item.id}}"
-                        catchtap="onSummaryClick">查看简介</button>
+                    <view class="info">
+                        <view class="title ellipsis">{{item['data-title']}}</view>
+                        <view class="others">
+                            <view class="line ellipsis">评分：{{item['data-score']}}</view>
+                            <view class="line ellipsis">演员：{{item['data-actors']}}</view>
+                            <view class="line ellipsis">上映：{{item['data-release']}}</view>
+                        </view>
+                        <view class="btns">
+                            <button type="primary" size="mini"
+                                id="btn_{{item.id}}"
+                                catchtap="onSummaryClick">简介</button>
+                            <button type="default" size="mini"
+                                id="play_{{item.id}}"
+                                catchtap="onVideoClick">预告片</button>
+                        </view>
+                    </view>
                 </view>
-            </view>
-        </block>
+            </block>
+        </view>
     </scroll-view>
 </view>

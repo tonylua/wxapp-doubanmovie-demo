@@ -2,21 +2,23 @@
     <view class="page-title" wx:if="{{movies.length}}">
         共有{{movies.length}}部电影即将上映：
     </view>
-    <scroll-view class="page-main"
+    <scroll-view
         scroll-y="true"
         style="height:{{scrollHeight}}px"
         bindscrolltoupper="onToUpper">
-        <block wx:for="{{movies}}" wx:for-item="item">
-            <view class="box">
-                <view class="pic"
-                    id="pic_{{item.id}}">
-                    <image src="{{item.image}}"></image>
+        <view class="page-main">
+            <block wx:for="{{movies}}" wx:for-item="item">
+                <view class="box">
+                    <view class="pic"
+                        id="pic_{{item.id}}">
+                        <image src="{{item.image}}"></image>
+                    </view>
+                    <view class="info">
+                        <view class="title ellipsis">{{item.title}}</view>
+                        <view class="others">{{item.time}}</view>
+                    </view>
                 </view>
-                <view class="info">
-                    <view class="title">{{item.title}}</view>
-                    <view class="others">{{item.time}}</view>
-                </view>
-            </view>
-        </block>
+            </block>
+        </view>
     </scroll-view>
 </view>

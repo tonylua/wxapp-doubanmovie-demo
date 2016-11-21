@@ -5,6 +5,8 @@ const RE_LTR = /class\=\"thumb[\s\S]*?src\=\"([\s\S]*?)\"[\s\S]*?href\=\"[\s\S]*
 const RE_SMR = /property\=\"v\:summary\"[^>]+?\>([\s\S]+?)\<\/span\>/gm;
 const RE_GLR = /pic\-col5\"([\s\S]+?)\<\/ul\>/gm;
 const RE_IMG = /\<img\s*src=\"([\s\S]+?)\"/g;
+const RE_VDO_PAGE = /\<li\sclass=\"video\"[\s\S]+?\<a\shref\=\"\/movie\/trailer\/(\d+?)\"/mg;
+const RE_VDO = /\<source\ssrc\=\"([\s\S]+?)\"/g;
 
 function get_page(url, onSuccess=NOOP, onFail=NOOP, onComplete=NOOP) {
     wx.request({
@@ -19,29 +21,6 @@ function get_page(url, onSuccess=NOOP, onFail=NOOP, onComplete=NOOP) {
     })
 }
 
-/*
-<li
-    id="26389466"
-    class="list-item hidden"
-    data-title="一句顶一万句"
-    data-score="6.1"
-    data-star="30"
-    data-release="2016"
-    data-duration="110分钟"
-    data-region="中国大陆 香港"
-    data-director="刘雨霖"
-    data-actors="毛孩 / 李倩 / 刘蓓"
-    data-category="nowplaying"
-    data-enough="True"
-    data-showed="True"
-    data-votecount="3578"
-    data-subject="26389466"
->
-    <ul class="">
-        <li class="poster">
-            <a href="https://movie.douban.com/subject/3025375/?from=playing_poster" class=ticket-btn target="_blank" data-psource="poster">
-                <img src="https://img3.doubanio.com/view/movie_poster_cover/mpst/public/p2388501883.jpg" alt="奇异博士" rel="nofollow" class="" />
-*/
 function get_movies(type='nowplaying', callback=NOOP, city='beijing') {
     let url = `http://movie.douban.com/${type}/${city}/`;
     get_page(url, data=>{
@@ -105,6 +84,42 @@ function get_gallary(id, callback=NOOP) {
         }      
     });
 }
+function get_video(id, callback=NOOP) {
+    let url = `https://m.douban.com/movie/subject/${id}`;
+    wx.showToast({
+        icon: 'loading',
+        title: 'loading...'
+    });
+    get_page(url, data=>{
+        try {
+            let vid = RE_VDO_PAGE.exec(data)[1];
+            get_video_helper(vid, callback);
+        } catch(ex) {
+            console.log('err when get_video:', ex);
+        }
+        finally {
+            wx.hideToast();
+        }      
+    });
+}
+function get_video_helper(vid, callback=NOOP) {
+    let url = `https://m.douban.com/movie/trailer/${vid}`;
+    wx.showToast({
+        icon: 'loading',
+        title: 'loading...'
+    });
+    get_page(url, data=>{
+        try {
+            let vurl = RE_VDO.exec(data)[1];
+            callback(vurl);
+        } catch(ex) {
+            console.log('err when get_video(step2):', ex);
+        }
+        finally {
+            wx.hideToast();
+        }      
+    });
+}
 
 module.exports = {
     //列表
@@ -112,5 +127,7 @@ module.exports = {
     //简介
     get_summary,
     //图集
-    get_gallary
+    get_gallary,
+    //预览片
+    get_video
 };

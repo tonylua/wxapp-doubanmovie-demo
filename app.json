@@ -1,26 +1,32 @@
 {
   "pages":[
     "pages/movies/movies",
-    "pages/movies_later/movies"
+    "pages/movies_later/movies",
+    "pages/video/video"
   ],
   "window":{
-    "backgroundTextStyle":"black",
+    "backgroundTextStyle":"dark",
     "backgroundColor":"#fff",
-    "navigationBarBackgroundColor":"#000",
+    "navigationBarBackgroundColor":"#036bc4",
     "navigationBarTitleText":"小程序demo-豆瓣电影",
     "navigationBarTextStyle":"white",
-    "enablePullDownRefresh":"true"
+    "enablePullDownRefresh":"false"
   },
   "tabBar":{
     "position": "bottom",
-    "selectedColor": "green",
-    "color": "#bbb",
+    "backgroundColor": "#fff",
+    "selectedColor": "#036bc4",
+    "color": "#000",
     "list": [{
       "pagePath": "pages/movies/movies",
-      "text": "正在热映"
+      "text": "正在热映",
+      "selectedIconPath": "img/icon1.gif",
+      "iconPath": "img/icon1.gif"
     }, {
       "pagePath": "pages/movies_later/movies",
-      "text": "即将上映"
+      "text": "即将上映",
+      "selectedIconPath": "img/icon2.gif",
+      "iconPath": "img/icon2.gif"
     }]
   }
 }

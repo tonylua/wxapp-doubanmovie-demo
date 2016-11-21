@@ -54,7 +54,16 @@ Page({
             wx.previewImage({
                 urls
             });
-            console.log(urls);
+        });
+    },
+    onVideoClick(e) {
+        if (e.timeStamp === this._eventTS) return;
+        this._eventTS = e.timeStamp;
+        req.get_video(e.currentTarget.id.replace('play_', ''), url=>{
+            console.log('video playing...', url);
+            wx.navigateTo({
+                url: `../video/video?v_url=${url}`
+            });
         });
     },
     onPageClick(e) {
