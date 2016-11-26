@@ -8,7 +8,7 @@
         style="height:{{scrollHeight}}px"
         bindscrolltoupper="onToUpper">
         <view class="page-main">
-            <block wx:for="{{movies}}" wx:for-item="item">
+            <block wx:for="{{movies}}" wx:for-item="item" wx:key="movie">
                 <view class="box">
                     <view class="pic"
                         id="pic_{{item.id}}"
