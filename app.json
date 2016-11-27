@@ -1,8 +1,8 @@
 {
   "pages":[
     "pages/movies/movies",
-    "pages/movies_later/movies",
-    "pages/video/video"
+    "pages/video/video",
+    "pages/movies_later/movies"
   ],
   "window":{
     "backgroundTextStyle":"dark",

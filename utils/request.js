@@ -71,7 +71,6 @@ function get_gallary(id, callback=NOOP) {
                 html.replace(RE_IMG, (_, src)=>{
                     if (/morepic/.test(src)) return;
                     let big = src.replace('albumicon', 'photo');
-                    console.log(big);
                     urls.push(big);
                 });
             });
