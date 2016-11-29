@@ -120,7 +120,7 @@ function get_video_helper(vid, callback=NOOP) {
     });
 }
 
-module.exports = {
+export default {
     //列表
     get_movies,
     //简介

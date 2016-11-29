@@ -1,4 +1,3 @@
-<!--movies.wxml-->
 <view class="movies" catchtap="onPageClick">
     <view class="page-title" wx:if="{{movies.length}}">
         共有{{movies.length}}部电影正在热映：
