@@ -1,14 +1,23 @@
+<br/><br/><br/>
+<center>
 ![pic](img/tutorial/1.png "")
+</center>
+<br/><br/><br/>
+<center>
 #程序猿的一小步-做一个简单的小程序DEMO#
+</center>
+<br/><br/><br/>
 -------------------------
 
-### 本次DEMO预览
+## <center>本次DEMO预览</center><br/>
 > 抓取豆瓣的页面，演示基本组件的用法
 
-![p1](p1.png "p1")
-![p2](p2.png "p2")
+|||
+|-----|-----:|
+|![p1](p1.png "p1")|![p2](p2.png "p2")|
+<br/><br/>
 
-## 对于程序猿来说，小程序是什么
+## <center>对于程序猿来说，小程序是什么</center><br/>
 > 张小龙："不需要下载安装即可使用的应用...应用将无处不在，随时可用，但又无需安装卸载"
 
 - 基于微信的封闭生态，又一个 RIA（Rich Internet Applications）轮子
@@ -16,23 +25,27 @@
 - 比之基于网页的服务号，多了缓存、录音、保存文件等接近原生的能力，及支付、模版消息等微信的功能
 - 原理就是用JS调用底层native组件，和React Native非常类似
 - 微信提供了开发框架、丰富又有限的基本组件及API、兼容性解决方案，和类似React的开发方法
+<br/><br/>
 
-## 当前阶段小程序的限制
+## <center>当前阶段小程序的限制</center><br/>
 - 现阶段不允许分享，不允许外部链接
 - 无法使用less或者sass之类的预编译
 - 开发工具和真机表现偶尔会有差异
 - 有时候代码无故不生效，需要重启才行
+<br/><br/>
 
-## 目录结构
+## <center>规定的目录结构</center><br/>
 ![pic](img/tutorial/2.png "")
+<br/><br/>
 
-## 文件类型
+## <center>文件类型</center><br/>
 - WXML 是框架设计的一套标签语言，结合基础组件、事件系统，可以构建出页面的结构
 - WXSS 是一套样式语言，与 CSS 相比扩展了自适应尺寸单位、样式导入等
 - json文件用来对全局或页面进行配置，决定页面路径、窗口表现、网络超时、底部tab 等
 - js文件管理具体业务逻辑，并用`App()`和`Page()`注册应用和页面，打开选项后可用ES6语法
+<br/><br/>
 
-### 设计规范和自适应尺寸单位
+## <center>设计规范和自适应尺寸单位</center><br/>
 - WXSS(WeiXin Style Sheets)是一套样式语言，具有 CSS 大部分特性，可以看作一套简化版的css
 - rpx（responsive pixel），规定屏幕宽为750rpx
 - 设计图要求尺寸为750px，元素尺寸直接写成 `[设计图尺寸]rpx`
@@ -43,12 +56,14 @@
 - 用 `@import "xxx.wxss";` 导入样式
 - 定义在 app.wxss 中的样式为全局样式，作用于每一个页面
 - 在 page 的 wxss 文件中定义的样式为局部样式，只作用在对应的页面，并会覆盖全局样式
+<br/><br/>
 
-### js文件的包管理
+## <center>js文件的包管理</center><br/>
 - 用 `require()` 或ES6的 `import`
 - 用 `module.exports =` 或ES6的 `export default`
+<br/><br/>
 
-### 页面导航
+## <center>页面导航</center><br/>
 - 在 `app.json` 中定义页面入口
 - 用 `wx.navigateTo` 跳转
 - 限制最多打开5个页面
@@ -64,8 +79,9 @@
         console.log(option.v_url);
     },
     ````
+<br/><br/>
 
-### 网络请求
+## <center>网络请求</center><br/>
 > wx.request发起的是 HTTPS 请求。一个微信小程序，同时只能有5个网络请求连接
 
     ````
@@ -81,10 +97,12 @@
       complete: [Function]
     })
     ````
+<br/><br/>
 
-### 开发工具
+## <center>开发工具</center><br/>
 - [官方开发工具](https://mp.weixin.qq.com/debug/wxadoc/dev/devtools/download.html?t=20161122) 可以实时编译预览，写代码体验较差
 - [Egret Wing](https://www.egret.com/downloads/wing.html) 可以预览单个页面，无法调适
+<br/><br/>
 
 ![编辑界面](img/tutorial/4.png "")
 
@@ -95,8 +113,11 @@
 ![调试界面](img/tutorial/5.png "")
 
 ![项目界面](img/tutorial/6.png "")
+<br/><br/>
 
-### 用`app.js`注册程序
+## <center>开发细节</center><br/>
+
+### _用`app.js`注册程序_
 
     ````
     App({
@@ -115,7 +136,9 @@
 
 > 在页面中调用全局的 getApp() 函数，可以获取到小程序实例
 
-### 用`app.json`配置全局
+<br/><br/>
+
+### _用`app.json`配置全局_
 
     ````
     {
@@ -151,13 +174,15 @@
       }
     }
     ````
+<br/><br/>
 
-### 集中定义网络请求等工具方法
+### _集中定义网络请求等工具方法_
 > 小程序开发中，一般把网络请求、全局工具方法等，集中定义在 utils 文件夹中
  
 ![pic](img/tutorial/3.png "")
+<br/><br/>
 
-### 视图层模板-`.wxml`文件
+### _视图层模板-`.wxml`文件_
 
     ````
     <view class="movies" catchtap="onPageClick">
@@ -196,8 +221,9 @@
 - 条件渲染和循环渲染等由 `wx:if` `wx:for` 等属性完成
 - 事件由 `bindxxx` 和 `catchxxx` 指定，后者不冒泡
 - 没有`click`事件，而是`tap`
+<br/><br/>
 
-### 用`.js`文件管理页面逻辑
+### _用`.js`文件管理页面逻辑_
 
     ````
     import req from '../../utils/request';
@@ -265,8 +291,9 @@
         }
     });
     ````
+<br/><br/>
 
-### 用`.wxss`定义局部样式
+### _用`.wxss`定义局部样式_
 
     ````
     .page-title {
@@ -295,11 +322,13 @@
         width: 200rpx;
     }
     ````
+<br/><br/>
 
-### DEMO源码
-[地址](https://github.com/tonylua/wxapp-doubanmovie-demo)
+## <center>DEMO源码</center><br/>
+[https://github.com/tonylua/wxapp-doubanmovie-demo](https://github.com/tonylua/wxapp-doubanmovie-demo)
+<br/><br/>
 
-### 参考资料
+## <center>参考资料</center><br/>
 - https://mp.weixin.qq.com/debug/wxadoc/introduction/index.html?t=20161122
 - http://www.jianshu.com/p/060c6f3dd4e8
 - http://blog.csdn.net/yulianlin/article/details/52621413
